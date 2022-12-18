@@ -2,18 +2,6 @@ title: <p align="center"> Marcos Rojas Pacheco </p>
 
 logo: "/assets/img/LOGO.png"
 
-description:
-  <p align="center">
-  <a href="#">PRESENTACION</a> |
-  <a href="https://twitter.com/SunamyTW">TWIITER</a> |
-  <a href="https://github.com/MarcusRojasPacheco">gIThBUB</a>
-  </p>
-  
-  <p align="justify">
-  AUN POR TERMINAR
-  <br><br>
-  AUN  POR TERMINAR
-  <br><br>
-  </p>
+description: DESCRIPCIÓN
   
 theme: jekyll-theme-minimal
