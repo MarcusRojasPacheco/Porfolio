@@ -67,16 +67,16 @@ window.onscroll = calcScrollValue;
 window.onload = calcScrollValue;
 
 $(document).ready(function(){
-  $("progress").hide();
+  $("#progress").hide();
   $(function scrollTop() {
     $(window).scroll(function () {
       if ($(this).scrollTop() > 350) {
-        $('progress').fadeIn();
+        $('#progress').fadeIn();
       } else {
-        $('progress').fadeOut();
+        $('#progress').fadeOut();
       }
     });
-    $('progress').click(function () {
+    $('#progress').click(function () {
       $('body,html').animate({
         scrollTop: 0
       }, 1000);
