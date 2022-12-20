@@ -1,6 +1,8 @@
 @import "fonts";
 @import "rouge-github";
 
+
+
 body {
   background-color: #fff;
   padding:50px;
@@ -269,11 +271,4 @@ footer {
     font-size:12pt;
     color:#444;
   }
-}
-
-#btn-back-to-top {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: none;
 }
