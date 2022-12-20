@@ -3,31 +3,38 @@ layout: default
 ---
 
 <style>
-  #backbtn {
-    background-color: #2596be;
-    color: white;
-    text-align: center;
-    font-size: 30px;
-    text-decoration: none;
-    overflow: hidden;
-    display: none;
-    cursor: pointer;
-    position: fixed;
-    width: 40px;
-    line-height: 40px;
-    bottom: 50px;
-    right: 0;
-  }
-
-  #backbtn:hover {
-    background-color: #DDF;
-    color: #000;
-  }
+#progress {
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  height: 70px;
+  width: 70px;
+  display: none;
+  place-items: center;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+#progress-value {
+  display: block;
+  height: calc(100% - 15px);
+  width: calc(100% - 15px);
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 35px;
+  color: #001a2e;
+}
 </style>
 
 <small>{{ page.date | date: "%-d %B %Y" }}</small>
 <h1>{{ page.title }}</h1>
-<button class="material-symbols-outlined" onclick="Scrollback_topfunc()" id="backbtn" title="Scroll back to top">expand_less</button>
+
+<div id="progress">
+  <span id="progress-value">&#x1F815;</span>
+</div>
+
 <p class="view">by {{ page.author | default: site.author }}</p>
 
 {{content}}
@@ -37,21 +44,25 @@ layout: default
 {% endif %}
 
 <script>
-var back_top_button = document.getElementById("backbtn");
-
-// Whenever end users scroll down 10px from the beginning of the web page, then back to top button visible
-window.onscroll = function() {scrollfunc()};
-
-function scrollfunc() {
-  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-    back_top_button.style.display = "block";
+let calcScrollValue = () => {
+  let scrollProgress = document.getElementById("progress");
+  let progressValue = document.getElementById("progress-value");
+  let pos = document.documentElement.scrollTop;
+  let calcHeight =
+    document.documentElement.scrollHeight -
+    document.documentElement.clientHeight;
+  let scrollValue = Math.round((pos * 100) / calcHeight);
+  if (pos > 100) {
+    scrollProgress.style.display = "grid";
   } else {
-    back_top_button.style.display = "none";
+    scrollProgress.style.display = "none";
   }
-}
+  scrollProgress.addEventListener("click", () => {
+    document.documentElement.scrollTop = 0;
+  });
+  scrollProgress.style.background = `conic-gradient(#03cc65 ${scrollValue}%, #d7d7d7 ${scrollValue}%)`;
+};
 
-function Scrollback_topfunc() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
+window.onscroll = calcScrollValue;
+window.onload = calcScrollValue;
 </script>
