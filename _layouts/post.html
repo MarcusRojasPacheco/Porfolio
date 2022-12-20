@@ -27,7 +27,7 @@ layout: default
 
 <small>{{ page.date | date: "%-d %B %Y" }}</small>
 <h1>{{ page.title }}</h1>
-<button onclick="Scrollback_topfunc()" id="backbtn" title="Scroll back to top">➤</button>
+<button class="material-symbols-outlined" onclick="Scrollback_topfunc()" id="backbtn" title="Scroll back to top">expand_less</button>
 <p class="view">by {{ page.author | default: site.author }}</p>
 
 {{content}}
