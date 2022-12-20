@@ -3,25 +3,31 @@ layout: default
 ---
 
 <style>
-  .scroll-top {
-  width: 75px;
-  height: 75px;
-  position: fixed;
-  bottom: 25px;
-  left: 20px;
-  display: none;
+  #backbtn {
+    background-color: #2596be;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    text-decoration: none;
+    overflow: hidden;
+    display: none;
+    cursor: pointer;
+    position: fixed;
+    width: 40px;
+    line-height: 40px;
+    bottom: 50px;
+    right: 0;
   }
-  .scroll-top i {
-  display: inline-block;
-  color: #fff;
+
+  #backbtn:hover {
+    background-color: #DDF;
+    color: #000;
   }
 </style>
 
 <small>{{ page.date | date: "%-d %B %Y" }}</small>
 <h1>{{ page.title }}</h1>
-<button class="btn btn-primary scroll-top" data-scroll="up" type="button">
-  <i class="fa fa-chevron-up"></i>
-  </button>
+<button onclick="Scrollback_topfunc()" id="backbtn" title="Scroll back to top">➤</button>
 <p class="view">by {{ page.author | default: site.author }}</p>
 
 {{content}}
@@ -31,21 +37,21 @@ layout: default
 {% endif %}
 
 <script>
-  $(document).ready(function () {
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > 100) {
-      $('.scroll-top').fadeIn();
-    } else {
-      $('.scroll-top').fadeOut();
-    }
-  });
+var back_top_button = document.getElementById("backbtn");
 
-  $('.scroll-top').click(function () {
-    $("html, body").animate({
-      scrollTop: 0
-    }, 100);
-      return false;
-  });
+// Whenever end users scroll down 10px from the beginning of the web page, then back to top button visible
+window.onscroll = function() {scrollfunc()};
 
-});
+function scrollfunc() {
+  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+    back_top_button.style.display = "block";
+  } else {
+    back_top_button.style.display = "none";
+  }
+}
+
+function Scrollback_topfunc() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
 </script>
